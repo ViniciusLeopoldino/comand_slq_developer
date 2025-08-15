@@ -20,11 +20,7 @@ Um guia de referência rápido e interativo, construído como uma página única
 
 ## 🚀 Como Usar
 
-Este projeto é um único arquivo auto-contido. Para utilizá-lo, siga os passos:
-
-1.  Clone ou baixe este repositório.
-2.  Abra o arquivo `index.html` em seu navegador de preferência (Chrome, Firefox, Edge, etc.).
-3.  Pronto! Comece a navegar e pesquisar os comandos.
+Este projeto está publicado em: https://marvelous-moxie-3dc152.netlify.app/ 
 
 ## 🤝 Como Contribuir
 
@@ -43,7 +39,7 @@ Este projeto é um único arquivo auto-contido. Para utilizá-lo, siga os passos
 1.  **Faça um Fork** do projeto clicando no botão "Fork" no canto superior direito.
 2.  **Clone** o seu fork para a sua máquina local:
     ```bash
-    git clone [https://github.com/SEU-USUARIO/nome-do-repositorio.git](https://github.com/SEU-USUARIO/nome-do-repositorio.git)
+    git clone [https://github.com/ViniciusLeopoldino/comand_slq_developer.git](https://github.com/ViniciusLeopoldino/comand_slq_developer.git)
     ```
 3.  **Crie uma nova Branch** para sua modificação:
     ```bash
