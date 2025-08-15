@@ -39,7 +39,7 @@ Este projeto está publicado em: https://marvelous-moxie-3dc152.netlify.app/
 1.  **Faça um Fork** do projeto clicando no botão "Fork" no canto superior direito.
 2.  **Clone** o seu fork para a sua máquina local:
     ```bash
-    git clone [https://github.com/ViniciusLeopoldino/comand_slq_developer.git](https://github.com/ViniciusLeopoldino/comand_slq_developer.git)
+    git clone https://github.com/ViniciusLeopoldino/comand_slq_developer.git
     ```
 3.  **Crie uma nova Branch** para sua modificação:
     ```bash
