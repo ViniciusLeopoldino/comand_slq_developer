@@ -13,49 +13,63 @@
     <!-- Visualization & Content Choices: Report Info: SQL Commands & Syntax -> Goal: Quick Reference & Learning -> Presentation: Interactive Cards in a Grid, Accordion for Functions -> Interaction: Sidebar Navigation, Real-time Search Filter -> Justification: This design prioritizes findability and readability, which are key for a technical reference guide. Cards provide clear separation, and the search filter is the primary interactive tool for efficient use. No charts are needed as the source material is purely textual/code-based. -> Library/Method: Vanilla JS for interactions, Tailwind CSS for styling. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .command-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .command-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        pre {
-            background-color: #e9ecef;
-            border: 1px solid #dee2e6;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            color: #343a40;
-        }
-        .nav-link.active {
-            background-color: #107c41;
-            color: white;
-            font-weight: 600;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
+      /* --- Estilos Gerais --- */
+      body {
+          font-family: 'Inter', sans-serif;
+          background-color: #121212; /* Fundo principal escuro */
+          color: #e0e0e0; /* Cor do texto principal clara */
+      }
+
+      /* --- Card de Comando --- */
+      .command-card {
+          background-color: #1e1e1e; /* Fundo do card um pouco mais claro que o body */
+          border: 1px solid #333; /* Borda sutil para o card */
+          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+      .command-card:hover {
+          transform: translateY(-5px);
+          /* Sombra mais escura para se destacar no fundo escuro */
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      /* --- Bloco de Código --- */
+      pre {
+          background-color: #2a2a2e; /* Fundo do bloco de código */
+          border: 1px solid #444; /* Borda do bloco de código */
+          border-radius: 0.5rem;
+          padding: 1rem;
+          overflow-x: auto;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+      }
+      code {
+          font-family: 'Courier New', Courier, monospace;
+          color: #d4d4d4; /* Cor clara para o texto do código */
+      }
+
+      /* --- Navegação Ativa --- */
+      .nav-link.active {
+          /* Mantido pois o contraste já é bom */
+          background-color: #107c41;
+          color: white;
+          font-weight: 600;
+      }
+
+      /* --- Barra de Rolagem (Scrollbar) --- */
+      ::-webkit-scrollbar {
+          width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+          background: #2a2a2e; /* Fundo da barra de rolagem */
+      }
+      ::-webkit-scrollbar-thumb {
+          background: #555; /* Cor do "polegar" da barra */
+          border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+          background: #888; /* Cor ao passar o mouse */
+      }
+  </style>
 </head>
 <body class="bg-stone-50 text-gray-800">
 
