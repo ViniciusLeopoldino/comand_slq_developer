@@ -9,14 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      /* Estilos gerais da fonte */
+      /* Estilo geral da fonte */
       body {
           font-family: 'Inter', sans-serif;
       }
       
       /* Mantido para o link de navegação ativo via JavaScript */
       .nav-link.active {
-          background-color: #16a34a; /* green-600 */
+          background-color: #16a34a; /* Cor do Tailwind: green-600 */
           color: white;
           font-weight: 600;
       }
@@ -26,21 +26,27 @@
           width: 8px;
       }
       ::-webkit-scrollbar-track {
-          background: #1f2937; /* gray-800 */
+          background: #1f2937; /* Cor do Tailwind: gray-800 */
       }
       ::-webkit-scrollbar-thumb {
-          background: #4b5563; /* gray-600 */
+          background: #4b5563; /* Cor do Tailwind: gray-600 */
           border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-          background: #6b7280; /* gray-500 */
+          background: #6b7280; /* Cor do Tailwind: gray-500 */
+      }
+      
+      /* Ajustes finos para blocos de código */
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
       }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
 
     <div class="flex flex-col md:flex-row min-h-screen">
-        <aside class="w-full md:w-64 bg-gray-800 shadow-lg md:min-h-screen p-4 md:p-6">
+        <aside class="w-full md:w-64 bg-gray-800 shadow-xl p-4 md:p-6">
             <h1 class="text-2xl font-bold text-green-400 mb-6">Oracle SQL</h1>
             <nav id="navigation" class="space-y-2">
                 <a href="#dml" class="nav-link block px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-green-400 transition-colors duration-200">DML</a>
@@ -72,27 +78,27 @@
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="SELECT">
                             <h4 class="text-xl font-bold text-green-400">SELECT</h4>
                             <p class="mt-2 text-gray-400">Recupera dados de uma ou mais tabelas.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">SELECT nome, salario FROM empregados WHERE id_departamento = 10;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>SELECT nome, salario FROM empregados WHERE id_departamento = 10;</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="INSERT">
                             <h4 class="text-xl font-bold text-green-400">INSERT</h4>
                             <p class="mt-2 text-gray-400">Adiciona novas linhas de dados a uma tabela.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">INSERT INTO empregados (id, nome, salario) VALUES (101, 'Ana', 5000);</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>INSERT INTO empregados (id, nome, salario) VALUES (101, 'Ana', 5000);</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="UPDATE">
                             <h4 class="text-xl font-bold text-green-400">UPDATE</h4>
                             <p class="mt-2 text-gray-400">Modifica dados existentes em uma tabela.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">UPDATE empregados SET salario = 5500 WHERE id = 101;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>UPDATE empregados SET salario = 5500 WHERE id = 101;</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="DELETE">
                             <h4 class="text-xl font-bold text-green-400">DELETE</h4>
                             <p class="mt-2 text-gray-400">Remove linhas de uma tabela.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">DELETE FROM empregados WHERE id = 101;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>DELETE FROM empregados WHERE id = 101;</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="MERGE">
                             <h4 class="text-xl font-bold text-green-400">MERGE</h4>
                             <p class="mt-2 text-gray-400">Executa operações de INSERT ou UPDATE com base em uma condição.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">MERGE INTO bonus b USING empregados e ON (b.id_empregado = e.id) WHEN MATCHED THEN UPDATE SET b.valor = e.salario * 0.1 WHEN NOT MATCHED THEN INSERT (id_empregado, valor) VALUES (e.id, e.salario * 0.05);</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>MERGE INTO bonus b USING empregados e ON (b.id_empregado = e.id) WHEN MATCHED THEN UPDATE SET b.valor = e.salario * 0.1 WHEN NOT MATCHED THEN INSERT (id_empregado, valor) VALUES (e.id, e.salario * 0.05);</code></pre>
                         </div>
                     </div>
                 </section>
@@ -104,32 +110,160 @@
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="CREATE">
                             <h4 class="text-xl font-bold text-green-400">CREATE</h4>
                             <p class="mt-2 text-gray-400">Cria objetos no banco de dados, como tabelas, views, etc.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">CREATE TABLE projetos (id NUMBER PRIMARY KEY, nome VARCHAR2(100), data_inicio DATE);</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE TABLE projetos (id NUMBER PRIMARY KEY, nome VARCHAR2(100), data_inicio DATE);</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="ALTER">
                             <h4 class="text-xl font-bold text-green-400">ALTER</h4>
                             <p class="mt-2 text-gray-400">Modifica a estrutura de um objeto existente.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">ALTER TABLE projetos ADD (orcamento NUMBER(10, 2));</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>ALTER TABLE projetos ADD (orcamento NUMBER(10, 2));</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="DROP">
                             <h4 class="text-xl font-bold text-green-400">DROP</h4>
                             <p class="mt-2 text-gray-400">Remove permanentemente um objeto do banco de dados.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">DROP TABLE projetos;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>DROP TABLE projetos;</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="TRUNCATE">
                             <h4 class="text-xl font-bold text-green-400">TRUNCATE</h4>
                             <p class="mt-2 text-gray-400">Remove todas as linhas de uma tabela rapidamente.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">TRUNCATE TABLE logs_antigos;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>TRUNCATE TABLE logs_antigos;</code></pre>
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="RENAME">
                             <h4 class="text-xl font-bold text-green-400">RENAME</h4>
                             <p class="mt-2 text-gray-400">Renomeia um objeto.</p>
-                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm"><code class="text-cyan-300">RENAME projetos TO projetos_ativos;</code></pre>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>RENAME projetos TO projetos_ativos;</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="dcl" class="content-section hidden">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Linguagem de Controle de Dados (DCL)</h3>
+                    <p class="text-gray-400 mb-6">Comandos usados para controlar o acesso aos dados.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="GRANT">
+                            <h4 class="text-xl font-bold text-green-400">GRANT</h4>
+                            <p class="mt-2 text-gray-400">Concede privilégios a um usuário ou role.</p>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>GRANT SELECT, INSERT ON empregados TO usuario_relatorios;</code></pre>
+                        </div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="REVOKE">
+                            <h4 class="text-xl font-bold text-green-400">REVOKE</h4>
+                            <p class="mt-2 text-gray-400">Remove privilégios de um usuário ou role.</p>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>REVOKE INSERT ON empregados FROM usuario_relatorios;</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tcl" class="content-section hidden">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Controle de Transação (TCL)</h3>
+                    <p class="text-gray-400 mb-6">Comandos usados para gerenciar as transações no banco de dados.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="COMMIT">
+                            <h4 class="text-xl font-bold text-green-400">COMMIT</h4>
+                            <p class="mt-2 text-gray-400">Salva permanentemente todas as alterações da transação atual.</p>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>UPDATE contas SET saldo = saldo - 100 WHERE id = 1; COMMIT;</code></pre>
+                        </div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="ROLLBACK">
+                            <h4 class="text-xl font-bold text-green-400">ROLLBACK</h4>
+                            <p class="mt-2 text-gray-400">Desfaz todas as alterações da transação atual.</p>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>DELETE FROM pedidos_temp; ROLLBACK;</code></pre>
+                        </div>
+                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="SAVEPOINT">
+                            <h4 class="text-xl font-bold text-green-400">SAVEPOINT</h4>
+                            <p class="mt-2 text-gray-400">Define um ponto dentro de uma transação para o qual se pode retornar.</p>
+                            <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>SAVEPOINT ponto_a; ... ROLLBACK TO SAVEPOINT ponto_a;</code></pre>
                         </div>
                     </div>
                 </section>
                 
-                </div>
+                <section id="functions" class="content-section hidden">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Funções Comuns</h3>
+                    <p class="text-gray-400 mb-6">Funções integradas para manipulação de diferentes tipos de dados.</p>
+                    <div class="space-y-6">
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="UPPER LOWER SUBSTR INSTR LENGTH">
+                            <h4 class="text-xl font-bold text-green-400">Funções de String</h4>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                                <div><p class="text-gray-400"><code>UPPER</code>: Converte para maiúsculas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT UPPER(nome) FROM clientes;</code></pre></div>
+                                <div><p class="text-gray-400"><code>LOWER</code>: Converte para minúsculas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT LOWER(email) FROM clientes;</code></pre></div>
+                                <div><p class="text-gray-400"><code>SUBSTR</code>: Extrai uma substring.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SUBSTR('Oracle SQL', 1, 6) FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>INSTR</code>: Encontra a posição de uma substring.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT INSTR('Oracle SQL', 'SQL') FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>LENGTH</code>: Retorna o comprimento.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT LENGTH(nome) FROM produtos;</code></pre></div>
+                            </div>
+                        </div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="ROUND TRUNC MOD">
+                            <h4 class="text-xl font-bold text-green-400">Funções Numéricas</h4>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                                <div><p class="text-gray-400"><code>ROUND</code>: Arredonda um número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT ROUND(15.19, 1) FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>TRUNC</code>: Trunca um número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TRUNC(15.79) FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>MOD</code>: Retorna o resto de uma divisão.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MOD(10, 3) FROM dual;</code></pre></div>
+                            </div>
+                        </div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="SYSDATE ADD_MONTHS MONTHS_BETWEEN LAST_DAY">
+                            <h4 class="text-xl font-bold text-green-400">Funções de Data</h4>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                                <div><p class="text-gray-400"><code>SYSDATE</code>: Data e hora atuais.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SYSDATE FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>ADD_MONTHS</code>: Adiciona meses a uma data.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT ADD_MONTHS(SYSDATE, 3) FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>MONTHS_BETWEEN</code>: Meses entre datas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MONTHS_BETWEEN(SYSDATE, '01-JAN-2023') FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>LAST_DAY</code>: Último dia do mês.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT LAST_DAY(SYSDATE) FROM dual;</code></pre></div>
+                            </div>
+                        </div>
+                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="TO_CHAR TO_DATE TO_NUMBER">
+                            <h4 class="text-xl font-bold text-green-400">Funções de Conversão</h4>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                                <div><p class="text-gray-400"><code>TO_CHAR</code>: Converte para string.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_CHAR(SYSDATE, 'DD/MM/YYYY') FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>TO_DATE</code>: Converte string para data.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_DATE('25/12/2023', 'DD/MM/YYYY') FROM dual;</code></pre></div>
+                                <div><p class="text-gray-400"><code>TO_NUMBER</code>: Converte string para número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_NUMBER('123.45') FROM dual;</code></pre></div>
+                            </div>
+                        </div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="COUNT SUM AVG MAX MIN">
+                            <h4 class="text-xl font-bold text-green-400">Funções Agregadas</h4>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
+                                <div><p class="text-gray-400"><code>COUNT</code>: Conta o número de linhas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT COUNT(*) FROM empregados;</code></pre></div>
+                                <div><p class="text-gray-400"><code>SUM</code>: Soma os valores.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SUM(salario) FROM empregados;</code></pre></div>
+                                <div><p class="text-gray-400"><code>AVG</code>: Calcula a média.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT AVG(salario) FROM empregados;</code></pre></div>
+                                <div><p class="text-gray-400"><code>MAX</code>: Retorna o valor máximo.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MAX(salario) FROM empregados;</code></pre></div>
+                                <div><p class="text-gray-400"><code>MIN</code>: Retorna o valor mínimo.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MIN(salario) FROM empregados;</code></pre></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="triggers" class="content-section hidden">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Triggers (Gatilhos)</h3>
+                    <p class="text-gray-400 mb-6">Um trigger é um bloco de código PL/SQL que é executado automaticamente em resposta a um evento específico (como INSERT, UPDATE ou DELETE) em uma tabela.</p>
+                    <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="TRIGGER">
+                        <h4 class="text-xl font-bold text-green-400">Estrutura de um Trigger</h4>
+                        <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE OR REPLACE TRIGGER nome_do_trigger
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON nome_da_tabela
+[FOR EACH ROW]
+BEGIN
+   -- Lógica do trigger
+   -- :NEW se refere ao novo valor da linha
+   -- :OLD se refere ao valor antigo da linha
+END;
+/</code></pre>
+                        <h4 class="text-xl font-bold text-green-400 mt-6">Exemplo Prático</h4>
+                        <p class="mt-2 text-gray-400">Este trigger cria um log toda vez que o salário de um empregado é alterado.</p>
+                        <p class="mt-4 font-semibold text-gray-200">1. Crie a tabela de log:</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE TABLE log_salarios (
+    id_log NUMBER GENERATED ALWAYS AS IDENTITY,
+    id_empregado NUMBER,
+    salario_antigo NUMBER,
+    salario_novo NUMBER,
+    data_modificacao DATE,
+    PRIMARY KEY(id_log)
+);</code></pre>
+                        <p class="mt-4 font-semibold text-gray-200">2. Crie o Trigger:</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE OR REPLACE TRIGGER trg_log_mudanca_salario
+AFTER UPDATE OF salario ON empregados
+FOR EACH ROW
+WHEN (NEW.salario <> OLD.salario)
+BEGIN
+    INSERT INTO log_salarios (id_empregado, salario_antigo, salario_novo, data_modificacao)
+    VALUES (:OLD.id, :OLD.salario, :NEW.salario, SYSDATE);
+END;
+/</code></pre>
+                    </div>
+                </section>
+            </div>
             <div id="no-results" class="hidden text-center py-10">
                 <h3 class="text-xl font-semibold text-gray-300">Nenhum comando encontrado</h3>
                 <p class="text-gray-500 mt-2">Tente refinar sua busca.</p>
@@ -138,81 +272,75 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          const navLinks = document.querySelectorAll('.nav-link');
-          const sections = document.querySelectorAll('.content-section');
-          const searchInput = document.getElementById('searchInput');
-          const commandCards = document.querySelectorAll('.command-card');
-          const noResults = document.getElementById('no-results');
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+            const searchInput = document.getElementById('searchInput');
+            const commandCards = document.querySelectorAll('.command-card');
+            const noResults = document.getElementById('no-results');
 
-          function updateActiveLink(targetId) {
-              navLinks.forEach(link => {
-                  link.classList.remove('active');
-                  if (link.getAttribute('href') === `#${targetId}`) {
-                      link.classList.add('active');
-                  }
-              });
-          }
+            function updateActiveLink(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
 
-          function showSection(targetId) {
-              sections.forEach(section => {
-                  if (section.id === targetId) {
-                      section.classList.remove('hidden');
-                  } else {
-                      section.classList.add('hidden');
-                  }
-              });
-              updateActiveLink(targetId);
-          }
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+                updateActiveLink(targetId);
+            }
 
-          const navigation = document.getElementById('navigation');
-          navigation.addEventListener('click', function(e) {
-              if (e.target.tagName === 'A') {
-                  e.preventDefault();
-                  const targetId = e.target.getAttribute('href').substring(1);
-                  showSection(targetId);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-          });
+            const navigation = document.getElementById('navigation');
+            navigation.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
 
-          searchInput.addEventListener('keyup', function() {
-              const searchTerm = searchInput.value.toLowerCase().trim();
-              let resultsFound = false;
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let resultsFound = false;
 
-              sections.forEach(section => section.classList.remove('hidden'));
-              
-              commandCards.forEach(card => {
-                  const commandName = card.dataset.command.toLowerCase();
-                  const cardText = card.textContent.toLowerCase();
-                  
-                  if (cardText.includes(searchTerm)) {
-                      card.style.display = 'block';
-                      resultsFound = true;
-                  } else {
-                      card.style.display = 'none';
-                  }
-              });
+                // Mostra todas as seções durante a busca para procurar em todo o conteúdo
+                sections.forEach(section => section.classList.remove('hidden'));
+                
+                commandCards.forEach(card => {
+                    const cardText = card.textContent.toLowerCase();
+                    
+                    if (cardText.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        resultsFound = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
 
-              // Mostra/esconde a mensagem "Nenhum resultado encontrado"
-              noResults.classList.toggle('hidden', resultsFound);
-
-              // Esconde seções que ficarem vazias após a busca
-              sections.forEach(section => {
-                  const visibleCards = section.querySelectorAll('.command-card[style*="display: block"]');
-                  if (visibleCards.length === 0) {
-                      section.classList.add('hidden');
-                  }
-              });
-
-              if (searchTerm === '') {
-                  showSection('dml'); // Volta para a seção inicial se a busca for limpa
-                  commandCards.forEach(card => card.style.display = 'block');
-                  noResults.classList.add('hidden');
-              }
-          });
-          
-          showSection('dml');
-      });
-  </script>
+                if (searchTerm === '') {
+                    // Se a busca estiver vazia, volta ao estado inicial
+                    showSection('dml');
+                    commandCards.forEach(card => card.style.display = 'block');
+                    noResults.classList.add('hidden');
+                } else {
+                    // Controla a visibilidade da mensagem "Nenhum resultado"
+                    noResults.classList.toggle('hidden', resultsFound);
+                }
+            });
+            
+            // Define a seção inicial a ser exibida
+            showSection('dml');
+        });
+    </script>
 </body>
 </html>
