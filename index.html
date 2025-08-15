@@ -13,32 +13,20 @@
           font-family: 'Inter', sans-serif;
       }
       .nav-link.active {
-          background-color: #16a34a;
+          background-color: #16a34a; /* green-600 */
           color: white;
           font-weight: 600;
       }
-      ::-webkit-scrollbar {
-          width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-          background: #1f2937;
-      }
-      ::-webkit-scrollbar-thumb {
-          background: #4b5563;
-          border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-          background: #6b7280;
-      }
-      pre {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #1f2937; /* gray-800 */ }
+      ::-webkit-scrollbar-thumb { background: #4b5563; /* gray-600 */ border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #6b7280; /* gray-500 */ }
+      pre { white-space: pre-wrap; word-wrap: break-word; }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-300">
+<body class="bg-gray-900 text-gray-300 flex flex-col min-h-screen">
 
-    <div class="flex flex-col md:flex-row min-h-screen">
+    <div class="flex flex-col md:flex-row flex-1">
         <aside class="w-full md:w-64 bg-gray-800 shadow-xl p-4 md:p-6">
             <h1 class="text-2xl font-bold text-green-400 mb-6">Oracle SQL</h1>
             <nav id="navigation" class="space-y-2">
@@ -55,9 +43,9 @@
             <header class="mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Guia Interativo de Comandos</h2>
                 <p class="text-gray-400 mt-2">Um guia de referência rápido para os comandos mais importantes do Oracle SQL.</p>
-                <div class="mt-6 relative"></div>
+                <div class="mt-6 relative">
                     <input type="text" id="searchInput" placeholder="Pesquisar comando (ex: SELECT, CREATE...)" class="w-full p-3 pl-10 bg-gray-700 border border-gray-600 text-gray-200 placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition">
-                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"></svg>
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
@@ -67,7 +55,7 @@
                 <section id="dml" class="content-section">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Linguagem de Manipulação de Dados (DML)</h3>
                     <p class="text-gray-400 mb-6">Comandos usados para gerenciar dados dentro dos objetos do banco de dados.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="SELECT">
                             <h4 class="text-xl font-bold text-green-400">SELECT</h4>
                             <p class="mt-2 text-gray-400">Recupera dados de uma ou mais tabelas.</p>
@@ -120,7 +108,7 @@
                             <p class="mt-2 text-gray-400">Remove todas as linhas de uma tabela rapidamente.</p>
                             <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>TRUNCATE TABLE logs_antigos;</code></pre>
                         </div>
-                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="RENAME"></div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="RENAME">
                             <h4 class="text-xl font-bold text-green-400">RENAME</h4>
                             <p class="mt-2 text-gray-400">Renomeia um objeto.</p>
                             <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>RENAME projetos TO projetos_ativos;</code></pre>
@@ -128,11 +116,11 @@
                     </div>
                 </section>
 
-                <section id="dcl" class="content-section hidden"></section>
+                <section id="dcl" class="content-section hidden">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Linguagem de Controle de Dados (DCL)</h3>
                     <p class="text-gray-400 mb-6">Comandos usados para controlar o acesso aos dados.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="GRANT"></div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="GRANT">
                             <h4 class="text-xl font-bold text-green-400">GRANT</h4>
                             <p class="mt-2 text-gray-400">Concede privilégios a um usuário ou role.</p>
                             <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>GRANT SELECT, INSERT ON empregados TO usuario_relatorios;</code></pre>
@@ -145,7 +133,7 @@
                     </div>
                 </section>
 
-                <section id="tcl" class="content-section hidden"></section>
+                <section id="tcl" class="content-section hidden">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Controle de Transação (TCL)</h3>
                     <p class="text-gray-400 mb-6">Comandos usados para gerenciar as transações no banco de dados.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -167,13 +155,13 @@
                     </div>
                 </section>
                 
-                <section id="functions" class="content-section hidden"></section>
+                <section id="functions" class="content-section hidden">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Funções Comuns</h3>
                     <p class="text-gray-400 mb-6">Funções integradas para manipulação de diferentes tipos de dados.</p>
                     <div class="space-y-6">
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="UPPER LOWER SUBSTR INSTR LENGTH">
                             <h4 class="text-xl font-bold text-green-400">Funções de String</h4>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4"></div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
                                 <div><p class="text-gray-400"><code>UPPER</code>: Converte para maiúsculas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT UPPER(nome) FROM clientes;</code></pre></div>
                                 <div><p class="text-gray-400"><code>LOWER</code>: Converte para minúsculas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT LOWER(email) FROM clientes;</code></pre></div>
                                 <div><p class="text-gray-400"><code>SUBSTR</code>: Extrai uma substring.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SUBSTR('Oracle SQL', 1, 6) FROM dual;</code></pre></div>
@@ -183,7 +171,7 @@
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="ROUND TRUNC MOD">
                             <h4 class="text-xl font-bold text-green-400">Funções Numéricas</h4>
-                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4"></div>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
                                 <div><p class="text-gray-400"><code>ROUND</code>: Arredonda um número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT ROUND(15.19, 1) FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>TRUNC</code>: Trunca um número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TRUNC(15.79) FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>MOD</code>: Retorna o resto de uma divisão.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MOD(10, 3) FROM dual;</code></pre></div>
@@ -191,7 +179,7 @@
                         </div>
                         <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="SYSDATE ADD_MONTHS MONTHS_BETWEEN LAST_DAY">
                             <h4 class="text-xl font-bold text-green-400">Funções de Data</h4>
-                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4"></div>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
                                 <div><p class="text-gray-400"><code>SYSDATE</code>: Data e hora atuais.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SYSDATE FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>ADD_MONTHS</code>: Adiciona meses a uma data.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT ADD_MONTHS(SYSDATE, 3) FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>MONTHS_BETWEEN</code>: Meses entre datas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT MONTHS_BETWEEN(SYSDATE, '01-JAN-2023') FROM dual;</code></pre></div>
@@ -200,15 +188,15 @@
                         </div>
                          <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="TO_CHAR TO_DATE TO_NUMBER">
                             <h4 class="text-xl font-bold text-green-400">Funções de Conversão</h4>
-                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4"></div>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
                                 <div><p class="text-gray-400"><code>TO_CHAR</code>: Converte para string.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_CHAR(SYSDATE, 'DD/MM/YYYY') FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>TO_DATE</code>: Converte string para data.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_DATE('25/12/2023', 'DD/MM/YYYY') FROM dual;</code></pre></div>
                                 <div><p class="text-gray-400"><code>TO_NUMBER</code>: Converte string para número.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT TO_NUMBER('123.45') FROM dual;</code></pre></div>
                             </div>
                         </div>
-                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="COUNT SUM AVG MAX MIN"></div>
+                        <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="COUNT SUM AVG MAX MIN">
                             <h4 class="text-xl font-bold text-green-400">Funções Agregadas</h4>
-                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4"></div>
+                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4 mt-4">
                                 <div><p class="text-gray-400"><code>COUNT</code>: Conta o número de linhas.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT COUNT(*) FROM empregados;</code></pre></div>
                                 <div><p class="text-gray-400"><code>SUM</code>: Soma os valores.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT SUM(salario) FROM empregados;</code></pre></div>
                                 <div><p class="text-gray-400"><code>AVG</code>: Calcula a média.</p><pre class="mt-1 bg-gray-900 p-2 rounded-md text-xs"><code>SELECT AVG(salario) FROM empregados;</code></pre></div>
@@ -232,8 +220,7 @@ BEGIN
    -- :NEW se refere ao novo valor da linha
    -- :OLD se refere ao valor antigo da linha
 END;
-/
-</code></pre>
+/</code></pre>
                         <h4 class="text-xl font-bold text-green-400 mt-6">Exemplo Prático</h4>
                         <p class="mt-2 text-gray-400">Este trigger cria um log toda vez que o salário de um empregado é alterado.</p>
                         <p class="mt-4 font-semibold text-gray-200">1. Crie a tabela de log:</p>
@@ -254,8 +241,7 @@ BEGIN
     INSERT INTO log_salarios (id_empregado, salario_antigo, salario_novo, data_modificacao)
     VALUES (:OLD.id, :OLD.salario, :NEW.salario, SYSDATE);
 END;
-/
-</code></pre>
+/</code></pre>
                     </div>
                 </section>
             </div>
