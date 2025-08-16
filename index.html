@@ -13,15 +13,19 @@
           font-family: 'Inter', sans-serif;
       }
       .nav-link.active {
-          background-color: #16a34a; /* green-600 */
+          background-color: #16a34a;
           color: white;
           font-weight: 600;
       }
       ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #1f2937; /* gray-800 */ }
-      ::-webkit-scrollbar-thumb { background: #4b5563; /* gray-600 */ border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #6b7280; /* gray-500 */ }
+      ::-webkit-scrollbar-track { background: #1f2937; }
+      ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
       pre { white-space: pre-wrap; word-wrap: break-word; }
+      .token-exemplo {
+          color: #ef4444; /* red-500 */
+          font-weight: 500;
+      }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300 flex flex-col min-h-screen">
@@ -36,6 +40,7 @@
                 <a href="#tcl" class="nav-link block px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-green-400 transition-colors duration-200">TCL</a>
                 <a href="#functions" class="nav-link block px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-green-400 transition-colors duration-200">Funções</a>
                 <a href="#triggers" class="nav-link block px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-green-400 transition-colors duration-200">Triggers</a>
+                <a href="#packages" class="nav-link block px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-green-400 transition-colors duration-200">Packages</a>
             </nav>
         </aside>
 
@@ -154,7 +159,7 @@
                         </div>
                     </div>
                 </section>
-                
+
                 <section id="functions" class="content-section hidden">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Funções Comuns</h3>
                     <p class="text-gray-400 mb-6">Funções integradas para manipulação de diferentes tipos de dados.</p>
@@ -206,7 +211,7 @@
                         </div>
                     </div>
                 </section>
-                
+
                 <section id="triggers" class="content-section hidden">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Triggers (Gatilhos)</h3>
                     <p class="text-gray-400 mb-6">Um trigger é um bloco de código PL/SQL que é executado automaticamente em resposta a um evento específico (como INSERT, UPDATE ou DELETE) em uma tabela.</p>
@@ -214,7 +219,7 @@
                         <h4 class="text-xl font-bold text-green-400">Estrutura de um Trigger</h4>
                         <pre class="mt-4 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE OR REPLACE TRIGGER nome_do_trigger
 {BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON nome_da_tabela
-[FOR EACH ROW]
+FOR EACH ROW
 BEGIN
    -- Lógica do trigger
    -- :NEW se refere ao novo valor da linha
@@ -244,6 +249,95 @@ END;
 /</code></pre>
                     </div>
                 </section>
+
+                <section id="packages" class="content-section hidden">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-2 border-b-2 border-green-500 pb-2">Packages (Pacotes)</h3>
+                    <p class="text-gray-400 mb-6">Packages são "containers" do Oracle que agrupam de forma lógica procedures, functions, variáveis e outros construtos PL/SQL relacionados a um mesmo assunto. Eles melhoram a organização, performance e segurança do código.</p>
+                    <div class="command-card bg-gray-800 p-6 rounded-xl shadow-lg" data-command="PACKAGE SPECIFICATION BODY PROCEDURE FUNCTION CREATE OR REPLACE">
+                        <h4 class="text-xl font-bold text-green-400">Estrutura e Exemplo Prático</h4>
+                        <p class="mt-2 text-gray-400">Um package é sempre dividido em duas partes: a <span class="font-semibold text-green-400">Specification</span> (pública) e o <span class="font-semibold text-green-400">Body</span> (implementação privada). Vamos criar um package para gerenciar uma tabela de empregados.</p>
+
+                        <p class="mt-6 font-semibold text-gray-200">Passo 1: Criar a Tabela de Exemplo</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE TABLE empregados (
+    id_empregado NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR2(100) NOT NULL,
+    salario NUMBER(10, 2) NOT NULL,
+    data_contratacao DATE DEFAULT SYSDATE
+);</code></pre>
+
+                        <p class="mt-6 font-semibold text-gray-200">Passo 2: Criar a Package Specification (A Interface Pública)</p>
+                        <p class="mt-1 text-gray-400 text-sm">Aqui apenas declaramos o que o package oferecerá, sem mostrar a lógica interna.</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE OR REPLACE PACKAGE pkg_gerencia_empregados AS
+
+    -- Adiciona um novo empregado
+    PROCEDURE adicionar_empregado (
+        p_nome    IN VARCHAR2,
+        p_salario IN NUMBER
+    );
+
+    -- Atualiza o salário de um empregado
+    PROCEDURE atualizar_salario (
+        p_id_empregado IN NUMBER,
+        p_novo_salario IN NUMBER
+    );
+
+    -- Retorna o salário de um empregado
+    FUNCTION obter_salario (
+        p_id_empregado IN NUMBER
+    ) RETURN NUMBER;
+
+END pkg_gerencia_empregados;
+/</code></pre>
+                        
+                        <p class="mt-6 font-semibold text-gray-200">Passo 3: Criar o Package Body (A Implementação)</p>
+                        <p class="mt-1 text-gray-400 text-sm">Este é o "motor" do package, contendo o código que executa as tarefas.</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>CREATE OR REPLACE PACKAGE BODY pkg_gerencia_empregados AS
+
+    PROCEDURE adicionar_empregado (p_nome IN VARCHAR2, p_salario IN NUMBER) AS
+    BEGIN
+        INSERT INTO empregados (nome, salario) VALUES (p_nome, p_salario);
+        COMMIT;
+    END adicionar_empregado;
+
+    PROCEDURE atualizar_salario (p_id_empregado IN NUMBER, p_novo_salario IN NUMBER) AS
+    BEGIN
+        UPDATE empregados SET salario = p_novo_salario WHERE id_empregado = p_id_empregado;
+        COMMIT;
+    END atualizar_salario;
+
+    FUNCTION obter_salario (p_id_empregado IN NUMBER) RETURN NUMBER AS
+        v_salario empregados.salario%TYPE;
+    BEGIN
+        SELECT salario INTO v_salario FROM empregados WHERE id_empregado = p_id_empregado;
+        RETURN v_salario;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN NULL;
+    END obter_salario;
+
+END pkg_gerencia_empregados;
+/</code></pre>
+
+                        <p class="mt-6 font-semibold text-gray-200">Passo 4: Como Usar o Package</p>
+                        <p class="mt-1 text-gray-400 text-sm">Você chama os procedimentos e funções usando a sintaxe `nome_do_package.nome_do_metodo`.</p>
+                        <pre class="mt-2 bg-gray-900 p-3 rounded-lg text-sm overflow-x-auto"><code>-- Lembre-se de habilitar a saída com: SET SERVEROUTPUT ON;
+DECLARE
+    v_salario_atual NUMBER;
+BEGIN
+    -- Adicionando um empregado
+    pkg_gerencia_empregados.adicionar_empregado(p_nome => 'Carlos Souza', p_salario => 7000);
+    
+    -- Obtendo o salário (supondo que o ID dele seja 1)
+    v_salario_atual := pkg_gerencia_empregados.obter_salario(p_id_empregado => 1);
+    
+    DBMS_OUTPUT.PUT_LINE('O salário do empregado 1 é: ' || v_salario_atual);
+END;
+/
+
+-- Verificando o resultado na tabela
+SELECT * FROM empregados;</code></pre>
+                    </div>
+                </section>
             </div>
             <div id="no-results" class="hidden text-center py-10">
                 <h3 class="text-xl font-semibold text-gray-300">Nenhum comando encontrado</h3>
@@ -255,7 +349,7 @@ END;
     <footer class="w-full bg-gray-800 border-t border-gray-700 p-4 text-center">
         <p class="text-gray-400 text-sm">
             Este é um projeto de código aberto.
-            <a href="https://github.com/ViniciusLeopoldino/comand_slq_developer" target="_blank" rel="noopener noreferrer" class="font-semibold text-green-400 hover:underline">
+            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="font-semibold text-green-400 hover:underline">
                 Contribua no GitHub!
             </a>
         </p>
@@ -263,6 +357,53 @@ END;
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const sqlKeywords = new Set([
+                'ADD', 'ADD_MONTHS', 'AFTER', 'ALL', 'ALTER', 'ALWAYS', 'AND', 'ANY', 'AS', 'ASC', 'AVG', 
+                'BEFORE', 'BEGIN', 'BETWEEN', 'BODY', 'BY', 
+                'CASE', 'CAST', 'CHECK', 'COMMIT', 'CONSTANT', 'CONSTRAINT', 'CONVERT', 'COUNT', 'CREATE', 'CURSOR', 
+                'DATE', 'DECLARE', 'DECODE', 'DEFAULT', 'DELETE', 'DESC', 'DISTINCT', 'DROP', 'DUAL', 
+                'EACH', 'ELSE', 'END', 'EXCEPTION', 'EXECUTE', 'EXISTS', 'EXTRACT', 
+                'FOR', 'FOREIGN', 'FROM', 'FULL', 'FUNCTION', 
+                'GENERATED', 'GRANT', 'GREATEST', 'GROUP', 
+                'HAVING', 
+                'IDENTITY', 'IMMEDIATE', 'IN', 'INDEX', 'INNER', 'INSERT', 'INSTR', 'INTEGER', 'INTERSECT', 'INTO', 'IS', 
+                'JOIN', 
+                'KEY', 
+                'LAST_DAY', 'LEAST', 'LEFT', 'LENGTH', 'LEVEL', 'LIKE', 'LOWER', 
+                'MAX', 'MERGE', 'MIN', 'MINUS', 'MOD', 'MONTHS_BETWEEN', 
+                'NEW', 'NEXT_DAY', 'NOT', 'NOT NULL', 'NO_DATA_FOUND', 'NULL', 'NUMBER', 'NVL', 'NVL2', 
+                'OF', 'OLD', 'ON', 'OR', 'ORDER', 'OTHERS', 'OUTER', 
+                'PACKAGE', 'PRAGMA', 'PRIMARY', 'PROCEDURE', 'PUBLIC', 
+                'RECORD', 'REFERENCES', 'RENAME', 'REPLACE', 'RETURN', 'REVOKE', 'RIGHT', 'ROLLBACK', 'ROUND', 'ROW', 'ROWNUM', 
+                'SAVEPOINT', 'SELECT', 'SET', 'SOME', 'SUBSTR', 'SUBSTRB', 'SUM', 'SYSDATE', 
+                'TABLE', 'THEN', 'TO', 'TO_CHAR', 'TO_DATE', 'TO_NUMBER', 'TRIGGER', 'TRUNC', 'TRUNCATE', 'TYPE', 
+                'UNION', 'UNIQUE', 'UPDATE', 'UPPER', 'USER', 'USING', 
+                'VALUES', 'VARCHAR2', 'VIEW', 
+                'WHEN', 'WHERE', 'WITH'
+            ]);
+
+            function highlightCustomTokens() {
+                const codeBlocks = document.querySelectorAll('pre code');
+                const regex = /\b([a-zA-Z_]\w*)\b/g;
+
+                codeBlocks.forEach(block => {
+                    // Evita re-aplicar o highlight
+                    if (block.dataset.highlighted) {
+                        return;
+                    }
+
+                    const originalText = block.innerHTML;
+                    const highlightedText = originalText.replace(regex, (match) => {
+                        if (sqlKeywords.has(match.toUpperCase())) {
+                            return match;
+                        }
+                        return `<span class="token-exemplo">${match}</span>`;
+                    });
+                    block.innerHTML = highlightedText;
+                    block.dataset.highlighted = 'true';
+                });
+            }
+
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.content-section');
             const searchInput = document.getElementById('searchInput');
@@ -272,7 +413,7 @@ END;
             function updateActiveLink(targetId) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${targetId}`) {
+                    if(link.getAttribute('href') === `#${targetId}`) {
                         link.classList.add('active');
                     }
                 });
@@ -280,11 +421,7 @@ END;
 
             function showSection(targetId) {
                 sections.forEach(section => {
-                    if (section.id === targetId) {
-                        section.classList.remove('hidden');
-                    } else {
-                        section.classList.add('hidden');
-                    }
+                    section.classList.toggle('hidden', section.id !== targetId);
                 });
                 updateActiveLink(targetId);
             }
@@ -303,11 +440,17 @@ END;
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 let resultsFound = false;
 
+                if (searchTerm === '') {
+                    showSection('dml');
+                    commandCards.forEach(card => card.style.display = 'block');
+                    noResults.classList.add('hidden');
+                    return;
+                }
+
                 sections.forEach(section => section.classList.remove('hidden'));
                 
                 commandCards.forEach(card => {
                     const cardText = card.textContent.toLowerCase();
-                    
                     if (cardText.includes(searchTerm)) {
                         card.style.display = 'block';
                         resultsFound = true;
@@ -316,16 +459,14 @@ END;
                     }
                 });
 
-                if (searchTerm === '') {
-                    showSection('dml');
-                    commandCards.forEach(card => card.style.display = 'block');
-                    noResults.classList.add('hidden');
-                } else {
-                    noResults.classList.toggle('hidden', resultsFound);
-                }
+                noResults.classList.toggle('hidden', resultsFound);
+
+                // Re-aplica o highlight, pois a busca pode ter alterado o DOM de forma a perder o highlight
+                highlightCustomTokens();
             });
             
             showSection('dml');
+            highlightCustomTokens();
         });
     </script>
 </body>
